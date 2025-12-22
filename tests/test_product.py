@@ -1,3 +1,5 @@
+import pytest
+
 from src.Product import Product
 
 
@@ -15,3 +17,22 @@ def test_init() -> None:
 
     except ValueError as e:
         print(f"Ошибка: {e}")
+
+def test_new_product() -> None:
+
+    product = Product("Телефон", "Смартфон", 5000, 10)
+
+    with pytest.raises(ValueError, match="Цена не должна быть нулевая или отрицательная"):
+        product.price = 0
+
+    assert product.price == 5000
+
+    with pytest.raises(ValueError, match="Цена не должна быть нулевая или отрицательная"):
+        product.price = -100
+
+    assert product.price == 5000
+
+    with pytest.raises(ValueError, match="Количество не может быть отрицательным"):
+        product.quantity = -100
+
+    assert product.quantity == 10
