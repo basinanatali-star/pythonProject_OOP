@@ -1,3 +1,5 @@
+import pytest
+
 from src.Category import Category
 from src.Product import Product
 
@@ -5,7 +7,7 @@ from src.Product import Product
 def test_init() -> None:
     category = Category("Пустая", "Нет товаров", [])
 
-    assert len(category.products) == 0
+    assert category.products_count == 0
     assert Category.product_count == 0
     assert Category.category_count == 1
 
@@ -22,6 +24,19 @@ def test_init() -> None:
         [product1, product2, product3],
     )
 
-    assert len(category.products) == 3
+    assert category.products_count == 3
     assert Category.product_count == 3
     assert Category.category_count == 2
+
+def test_add_product() -> None:
+    category = Category("Книги", "Литература", [])
+
+    with pytest.raises(ValueError, match="Можно добавлять только объекты Product"):
+        category.add_product("Не товар")
+
+    assert category.products_count == 0
+
+    valid_product = Product("Книга", "Интересная", 500, 10)
+    category.add_product(valid_product)
+
+    assert category.products_count == 1

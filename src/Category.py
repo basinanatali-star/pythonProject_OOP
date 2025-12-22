@@ -19,13 +19,28 @@ class Category:
                 self.add_product(product)
         Category.category_count += 1
 
+    @property
+    def products(self):
+        if not self.__products:
+            return f"В категории '{self.name}' пока нет товаров"
+
+        products_info = []
+
+        for product in self.__products:
+            products_info.append(
+                f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт. "
+            )
+        return " ".join(products_info)
+
+    @property
+    def products_count(self):
+        return len(self.__products)
+
     def add_product(self, product):
         if not isinstance(product, Product):
             raise ValueError("Можно добавлять только объекты Product")
         self.__products.append(product)
-        Category.product_count += 1
-        return self
 
-    @property
-    def products(self):
-        return self.__products.copy()
+        Category.product_count += 1
+
+        return self

@@ -1,8 +1,8 @@
 class Product:
     name: str
     description: str
-    _price: float
-    _quantity: int
+    __price: float
+    __quantity: int
 
     product_count = 0
 
@@ -15,8 +15,8 @@ class Product:
 
         self.name = name
         self.description = description
-        self._price = price
-        self._quantity = quantity
+        self.__price = price
+        self.__quantity = quantity
 
         Product.product_count += 1
 
@@ -28,23 +28,23 @@ class Product:
     @property
     def price(self) -> float:
         """Геттер для цены"""
-        return self._price
+        return self.__price
 
     @price.setter
     def price(self, value: float):
         """Сеттер для цены с проверкой"""
         if value <= 0:
             raise ValueError("Цена не должна быть нулевая или отрицательная")
-        self._price = value
+        self.__price = value
 
     @property
     def quantity(self) -> int:
         """Геттер для количества"""
-        return self._quantity
+        return self.__quantity
 
     @quantity.setter
     def quantity(self, value: int):
         """Сеттер для количества с проверкой"""
         if value < 0:
             raise ValueError("Количество не может быть отрицательным")
-        self._quantity = value
+        self.__quantity = value
