@@ -19,6 +19,9 @@ class Category:
                 self.add_product(product)
         Category.category_count += 1
 
+    def __str__(self):
+        return f"Название категории: {self.name}. Kоличество продуктов: {Category.product_count}"
+
     @property
     def products(self):
         if not self.__products:

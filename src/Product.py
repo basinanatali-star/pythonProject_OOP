@@ -5,6 +5,7 @@ class Product:
     __quantity: int
 
     product_count = 0
+    result = 0.0
 
     def __init__(self, name, description, price, quantity):
 
@@ -19,6 +20,17 @@ class Product:
         self.__quantity = quantity
 
         Product.product_count += 1
+
+    def __add__(self, other):
+        if not isinstance(other, Product):
+            raise TypeError("Можно складывать только объекты Product")
+
+        result = self.__price * self.__quantity + other.__price * other.__quantity
+
+        return result
+
+    def __str__(self):
+        return f"{self.name}, {self.description}, {self.price}, {self.quantity}"
 
     @classmethod
     def new_product(cls, product_data):
