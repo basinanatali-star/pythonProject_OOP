@@ -6,6 +6,7 @@ class Product:
 
     product_count = 0
     result = 0.0
+    total_quantity = 0
 
     def __init__(self, name, description, price, quantity):
 
@@ -30,7 +31,7 @@ class Product:
         return result
 
     def __str__(self):
-        return f"{self.name}, {self.description}, {self.price}, {self.quantity}"
+        return f"{self.name}, {self.__price} руб. Остаток: {self.__quantity} шт."
 
     @classmethod
     def new_product(cls, product_data):

@@ -8,6 +8,7 @@ class Category:
 
     category_count = 0
     product_count = 0
+    total_quantity = 0
 
     def __init__(self, name, description, products):
         self.name = name
@@ -20,7 +21,10 @@ class Category:
         Category.category_count += 1
 
     def __str__(self):
-        return f"Название категории: {self.name}. Kоличество продуктов: {Category.product_count}"
+
+        for product in self.__products:
+            self.total_quantity += product.quantity
+        return f"Название категории: {self.name}. Kоличество продуктов: {self.total_quantity}"
 
     @property
     def products(self):
