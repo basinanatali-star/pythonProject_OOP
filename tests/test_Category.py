@@ -11,6 +11,7 @@ def reset_counters():
     Product.product_count = 0
     yield
 
+
 def test_init() -> None:
     category_1 = Category("Пустая", "Нет товаров", [])
 
@@ -35,10 +36,11 @@ def test_init() -> None:
     assert Category.product_count == 3
     assert Category.category_count == 2
 
+
 def test_add_product() -> None:
     category = Category("Книги", "Литература", [])
 
-    with pytest.raises(ValueError, match="Можно добавлять только объекты Product"):
+    with pytest.raises(TypeError, match="Можно добавлять только объекты Product"):
         category.add_product("Не товар")
 
     assert category.products_count == 0
@@ -47,6 +49,7 @@ def test_add_product() -> None:
     category.add_product(valid_product)
 
     assert category.products_count == 1
+
 
 def test_str() -> None:
     category_3 = Category("Автомобили", "Нет товаров", [])
@@ -57,17 +60,19 @@ def test_str() -> None:
         "Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5
     )
     product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
-    category_4 = Category("Смартфоны",
+    category_4 = Category(
+        "Смартфоны",
         "Смартфоны, как средство не только коммуникации, но и "
         "получения дополнительных функций для удобства жизни",
-        [product1]
+        [product1],
     )
     result = str(category_4)
     assert result == "Название категории: Смартфоны. Kоличество продуктов: 5"
-    category_5 = Category("Смартфоны",
+    category_5 = Category(
+        "Смартфоны",
         "Смартфоны, как средство не только коммуникации, но и "
         "получения дополнительных функций для удобства жизни",
-        [product1, product2]
+        [product1, product2],
     )
     result = str(category_5)
     assert result == "Название категории: Смартфоны. Kоличество продуктов: 13"
