@@ -76,14 +76,7 @@ class TestProduct:
             "Серый",
         )
         smartphone2 = Smartphone(
-            "Iphone 15",
-            "512GB, Gray space",
-            210000.0,
-            8,
-            98.2,
-            "15",
-            512,
-            "Gray space"
+            "Iphone 15", "512GB, Gray space", 210000.0, 8, 98.2, "15", 512, "Gray space"
         )
         grass1 = LawnGrass(
             "Газонная трава",
