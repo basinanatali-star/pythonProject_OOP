@@ -1,4 +1,17 @@
-class Product:
+from src.print_mixin import PrintMixin
+
+from abc import ABC, abstractmethod
+
+
+class BaseProduct(ABC):
+
+    @classmethod
+    @abstractmethod
+    def new_product(cls, *args, **kwargs):
+        pass
+
+
+class Product(BaseProduct, PrintMixin):
     name: str
     description: str
     __price: float
@@ -19,6 +32,7 @@ class Product:
         self.description = description
         self.__price = price
         self.__quantity = quantity
+        super().__init__()
 
         Product.product_count += 1
 
