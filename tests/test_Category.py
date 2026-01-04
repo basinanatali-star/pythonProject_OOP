@@ -76,3 +76,24 @@ def test_str() -> None:
     )
     result = str(category_5)
     assert result == "Название категории: Смартфоны. Kоличество продуктов: 13"
+
+def test_middle_price() -> None:
+    product1 = Product(
+        "Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5
+    )
+    product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
+    product3 = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14)
+
+    category_2 = Category(
+        "Смартфоны",
+        "Смартфоны, как средство не только коммуникации, но и "
+        "получения дополнительных функций для удобства жизни",
+        [product1, product2, product3],
+    )
+
+    assert round(category_2.middle_price(), 2) == 140333.33 # (180000.0 + 210000.0 + 31000.0) / 3
+
+    category_6 = Category("Автомобили", "Нет товаров", [])
+
+    assert category_6.middle_price() == 0.0
+

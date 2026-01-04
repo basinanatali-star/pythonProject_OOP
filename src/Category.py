@@ -52,3 +52,15 @@ class Category:
         Category.product_count += 1
 
         return self
+
+    def middle_price(self):
+
+        try:
+            product_price = sum(product.price for product in self.__products) / len(
+                self.__products
+            )
+            return round(product_price, 2)
+
+        except ZeroDivisionError:
+            print(f"Предупреждение: Категория {self.name} пуста (попытка деления на ноль)")
+            return 0.0

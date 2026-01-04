@@ -46,6 +46,11 @@ class TestProduct:
 
         assert product.quantity == 10
 
+        with pytest.raises(ValueError, match="Товар с нулевым количеством не может быть добавлен"):
+            product.quantity = 0
+
+        assert product.quantity == 10
+
     def test_add(self) -> None:
 
         product = Product("Телефон", "Смартфон", 5000, 10)
@@ -106,7 +111,7 @@ class TestProduct:
         grass2.result = 6750.0  # 450.0 * 15
 
         total_1 = product1 + product2
-        assert total_1 == 2580000.0  # 900000.0 +1680000.0
+        assert total_1 == 2580000.0  # 900000.0 + 1680000.0
 
         total_2 = product2 + product3
         assert total_2 == 2114000.0  # 1680000.0 + 434000.0

@@ -27,6 +27,8 @@ class Product(BaseProduct, PrintMixin):
             raise ValueError("Цена не должна быть нулевая или отрицательная")
         if quantity < 0:
             raise ValueError("Количество не может быть отрицательным")
+        if quantity == 0:
+            raise ValueError("Товар с нулевым количеством не может быть добавлен")
 
         self.name = name
         self.description = description
@@ -77,6 +79,8 @@ class Product(BaseProduct, PrintMixin):
         """Сеттер для количества с проверкой"""
         if value < 0:
             raise ValueError("Количество не может быть отрицательным")
+        if value == 0:
+            raise ValueError("Товар с нулевым количеством не может быть добавлен")
         self.__quantity = value
 
 
